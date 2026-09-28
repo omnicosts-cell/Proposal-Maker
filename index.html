@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brixen Proposal - [Company Name]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#131417; --ink2:#1e2024; --red:#d8352c; --red2:#b8231c; --paper:#f5f5f5; --card:#ffffff; --muted:#5d6068; --line:#e3e3e3; }
+  @page { size: Letter; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Poppins, "Segoe UI", Arial, sans-serif; color: var(--ink); background: #888; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 8.5in; height: 11in; position: relative; overflow: hidden; background: var(--paper); margin: 0 auto 24px; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  @media print { body { background: none; } .page { margin: 0; } }
+
+  /* shared bits */
+  .grid { position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 28px 28px; }
+  .kicker { font-size: 9.5px; letter-spacing: .28em; text-transform: uppercase; color: var(--red); font-weight: 600; }
+  .bar { width: 56px; height: 4px; background: var(--red); margin: 14px 0 18px; }
+  h2 { font-size: 26px; font-weight: 700; line-height: 1.15; }
+  h2 span { color: var(--red2); }
+  p { font-size: 12.5px; line-height: 1.7; color: #2b2d31; }
+  .logo { display:flex; align-items:center; gap:12px; }
+  .logo svg { width: 42px; height: 42px; }
+  .logo b { display:block; font-size: 19px; font-weight: 800; letter-spacing: .02em; line-height: 1; }
+  .logo small { display:block; font-size: 8.5px; font-weight: 600; letter-spacing: .12em; margin-top: 3px; }
+
+  .head { background: var(--ink); color:#fff; padding: 34px 56px 30px; position: relative; overflow: hidden; }
+  .head::after { content:""; position:absolute; right:-40px; top:0; width: 190px; height: 100%; background: var(--red); transform: skewX(-28deg); }
+  .head h1 { font-size: 24px; font-weight: 700; letter-spacing: .01em; position: relative; z-index: 1; }
+  .head .sub { font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase; color: #b9bcc3; margin-top: 8px; position: relative; z-index: 1; }
+  .head .rule { width: 56px; height: 4px; background: var(--red); margin-top: 14px; position: relative; z-index: 1; }
+  .body { padding: 30px 56px 0; }
+  .foot { position:absolute; left:0; right:0; bottom:0; height: 46px; background: var(--ink); color:#cfd1d6; display:flex; align-items:center; justify-content:space-between; padding: 0 56px; font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
+  .foot b { color:#fff; font-weight: 600; }
+
+  /* cover */
+  .cover { background: var(--ink); color:#fff; }
+  .cover .top { padding: 56px 56px 0; position: relative; z-index: 1; }
+  .cover .logo small.tag { color: var(--red); }
+  .cover .drawing { position:absolute; right: 48px; top: 150px; width: 330px; opacity: .9; }
+  .cover .slash { position:absolute; left:-20px; right:-20px; top: 520px; height: 5px; background: var(--red); transform: rotate(6deg); }
+  .cover .main { position:absolute; left: 56px; right: 56px; top: 585px; z-index: 1; }
+  .cover .for { font-size: 10px; letter-spacing: .28em; color: var(--red); font-weight: 600; text-transform: uppercase; }
+  .cover h1 { font-size: 40px; line-height: 1.12; font-weight: 700; margin-top: 14px; max-width: 540px; }
+  .cover .lede { color:#c9ccd2; font-size: 13.5px; line-height: 1.6; margin-top: 16px; max-width: 520px; }
+  .cover .meta { position:absolute; left:56px; right:56px; bottom: 50px; display:flex; justify-content:space-between; align-items:flex-end; font-size: 11px; color:#c9ccd2; z-index:1; }
+  .cover .meta b { display:block; color:#fff; font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+  .cover .meta .right { text-align:right; }
+
+  /* letter */
+  .letter p + p { margin-top: 12px; }
+  .facts { margin-top: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; }
+  .facts h3 { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+  .facts ul { list-style: none; display:grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+  .facts li, .card li, .check li { font-size: 11.5px; line-height: 1.5; padding-left: 22px; position: relative; }
+  .facts li::before, .card li::before, .check li::before { content:""; position:absolute; left:0; top: 3px; width: 13px; height: 13px; border-radius: 50%; background: var(--red2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.2l2.6 2.5L12 5.3' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px no-repeat; }
+  .sign { margin-top: 20px; font-size: 12.5px; }
+  .sign b { display:block; font-size: 13.5px; }
+  .sign span { color: var(--muted); font-size: 11.5px; }
+
+  .pains { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+  .pain { background: var(--ink); color:#fff; border-radius: 12px; padding: 14px 16px; }
+  .pain b { display:block; font-size: 12px; margin-bottom: 5px; }
+  .pain span { display:block; font-size: 10.5px; line-height: 1.5; color:#c9ccd2; }
+  .pain i { display:block; width: 26px; height: 3px; background: var(--red); margin-bottom: 9px; }
+
+  /* offers */
+  .cards { display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 16px 16px; }
+  .card .num { width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color:#fff; font-weight: 700; font-size: 13px; display:flex; align-items:center; justify-content:center; }
+  .card h4 { font-size: 14px; font-weight: 700; margin-top: 12px; line-height: 1.25; }
+  .card .tag { font-size: 8.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 5px 0 12px; }
+  .card ul { list-style: none; display:grid; gap: 7px; }
+  .card .why { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 10.5px; line-height: 1.5; color: var(--muted); }
+  .card .why b { color: var(--red2); }
+
+  .keep { margin-top: 20px; background: var(--ink); color:#fff; border-radius: 14px; padding: 18px 22px; display:grid; grid-template-columns: 160px 1fr; gap: 18px; align-items:center; }
+  .keep .kicker { line-height: 1.6; }
+  .keep ul { list-style:none; display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .keep li b { display:block; font-size: 12px; }
+  .keep li span { font-size: 10.5px; color:#c9ccd2; line-height: 1.45; display:block; margin-top: 3px; }
+
+  .why4 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .why4 div { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--red); border-radius: 10px; padding: 13px 16px; }
+  .why4 b { display:block; font-size: 12.5px; margin-bottom: 3px; }
+  .why4 span { display:block; font-size: 11px; line-height: 1.5; color: #3a3c41; }
+
+  /* process */
+  .steps { display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+  .step { background: var(--card); border:1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .step .n { display:inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--red2); color:#fff; font-weight: 700; font-size: 11.5px; align-items:center; justify-content:center; }
+  .step b { display:block; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; margin: 9px 0 5px; }
+  .step span { font-size: 10.5px; line-height: 1.5; color: #3a3c41; display:block; }
+  .files { display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+  .file { background: var(--ink2); color:#fff; border-radius: 10px; padding: 10px 14px; }
+  .file b { display:block; font-size: 13px; }
+  .file span { font-size: 10px; color:#c9ccd2; }
+
+  .first { margin-top: 22px; background: var(--red); color:#fff; border-radius: 14px; padding: 20px 24px; }
+  .first .kicker { color:#fff; opacity:.85; }
+  .first h3 { font-size: 18px; margin: 6px 0 8px; }
+  .first p { color:#fff; font-size: 12px; }
+
+  .faq { display:grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; margin-top: 18px; }
+  .faq div b { display:block; font-size: 11.5px; margin-bottom: 2px; }
+  .faq div span { font-size: 10.8px; line-height: 1.5; color: #3a3c41; }
+
+  /* contact */
+  .contact { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .pill { background: var(--card); border:1px solid var(--line); border-radius: 40px; padding: 11px 18px; display:flex; align-items:center; gap: 12px; }
+  .pill i { width: 30px; height: 30px; border-radius: 50%; background: var(--ink); flex: none; display:flex; align-items:center; justify-content:center; }
+  .pill i svg { width: 15px; height: 15px; }
+  .pill small { display:block; font-size: 8.5px; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; }
+  .pill b { font-size: 12px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COVER ============ -->
+<section class="page cover">
+  <div class="grid"></div>
+  <div class="top">
+    <div class="logo">
+      <svg viewBox="0 0 48 48"><path d="M24 3 42 13.5v21L24 45 6 34.5v-21z" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M24 3v42M24 13.5 42 24M24 34.5 42 24" fill="none" stroke="#d8352c" stroke-width="2.4"/><path d="M6 13.5 15 18.7v21" fill="none" stroke="#fff" stroke-width="2.4"/></svg>
+      <div><b>BRIXEN</b><small>CONSULTANCY LLC</small></div>
+    </div>
+  </div>
+  <svg class="drawing" viewBox="0 0 330 330" fill="none" stroke="#9ca0a8" stroke-width="1.3">
+    <rect x="20" y="30" width="270" height="10"/>
+    <rect x="28" y="40" width="254" height="250"/>
+    <g id="row"><rect x="46" y="58" width="36" height="30"/><line x1="64" y1="58" x2="64" y2="88"/><rect x="112" y="58" width="36" height="30"/><line x1="130" y1="58" x2="130" y2="88"/><rect x="178" y="58" width="36" height="30"/><line x1="196" y1="58" x2="196" y2="88"/><rect x="244" y="58" width="30" height="30"/><line x1="259" y1="58" x2="259" y2="88"/></g>
+    <use href="#row" y="48"/><use href="#row" y="96"/><use href="#row" y="144"/>
+    <line x1="28" y1="100" x2="282" y2="100"/><line x1="28" y1="148" x2="282" y2="148"/><line x1="28" y1="196" x2="282" y2="196"/><line x1="28" y1="244" x2="282" y2="244"/>
+    <rect x="46" y="254" width="44" height="36"/><rect x="134" y="250" width="44" height="40" fill="#26282d"/><line x1="156" y1="250" x2="156" y2="290"/><rect x="222" y="254" width="44" height="36"/>
+    <line x1="0" y1="290" x2="330" y2="290"/>
+    <line x1="28" y1="306" x2="282" y2="306" stroke-width="1"/><line x1="28" y1="301" x2="28" y2="311"/><line x1="282" y1="301" x2="282" y2="311"/>
+    <text x="155" y="322" fill="#9ca0a8" stroke="none" font-size="10" font-family="Poppins">86'-0&quot;</text>
+  </svg>
+  <div class="slash"></div>
+  <div class="main">
+    <div class="for">Proposal for <span data-f="company">[Company Name]</span></div>
+    <h1>Extra drawing hands for your busiest weeks.</h1>
+    <p class="lede">Architectural, structural, civil and MEP drawings, made in Revit and AutoCAD, in your templates, and checked by engineers before they reach you.</p>
+  </div>
+  <div class="meta">
+    <div><b>Prepared for <span data-f="full_name">[Client Name]</span></b><span data-f="company">[Company Name]</span></div>
+    <div class="right"><b><span data-f="date">[Date]</span></b>Brixen Consultancy LLC<br>brixenconsultancy.com</div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 : LETTER + WHAT WE HEARD ============ -->
+<section class="page">
+  <div class="head"><h1>A NOTE FROM BRIXEN</h1><div class="sub">Why we're reaching out</div><div class="rule"></div></div>
+  <div class="body letter">
+    <p><b>Hello,</b></p>
+    <p>Thanks for taking a look. We know you get a lot of these, so we'll keep it short.</p>
+    <p>Every construction team hits weeks when the work piles up faster than the team can draw it. Hiring for a few busy weeks doesn't make sense, and late drawings hold up the whole job. <b>We'd like to be the extra hands you call on those weeks.</b></p>
+    <p>Brixen Consultancy is a drawing team. We make architectural, structural, civil and MEP drawings in Revit and AutoCAD for U.S. contractors, developers and design firms. Our own engineers draw and check every sheet. You keep the design, the stamp and the client. We just help get the sheets done.</p>
+    <p>The next two pages show how we can help, and one small way to try us out.</p>
+    <div class="sign"><b>The Brixen Team</b><span>Business Development, Brixen Consultancy</span></div>
+
+    <div class="facts">
+      <h3>Who we work with</h3>
+      <ul><li>General contractors and builders</li><li>Developers and owners</li><li>Architects and design firms</li><li>Engineering firms</li><li>Fabricators and specialty trades</li><li>Teams across the USA, working remotely</li></ul>
+    </div>
+
+    <div class="kicker" style="margin-top:22px">What usually slows a project down</div>
+    <div class="pains"><div class="pain"><i></i><b>Deadlines stack up</b><span>Permit, bid and shop drawings all land in the same week. Your team can't grow for two weeks and shrink again.</span></div><div class="pain"><i></i><b>Old files and markups</b><span>Jobs start from old CAD files, PDFs and redlines that someone has to redraw.</span></div><div class="pain"><i></i><b>Trades don't line up</b><span>Drawings from different teams clash, and the problems only show up on site.</span></div></div>
+  </div>
+  <div class="foot"><span>Accurate drawings · Coordinated sets · Clear communication</span><b>Page 2</b></div>
+</section>
+
+<!-- ============ PAGE 3 : HOW WE CAN HELP ============ -->
+<section class="page">
+  <div class="head"><h1>HOW WE CAN HELP</h1><div class="sub">Pick one · Pick all · Use us only when you're busy</div><div class="rule"></div></div>
+  <div class="body">
+    <p>We cover every stage, from the first plans to the final as-built set. Use one service or all of them.</p>
+    <div class="cards"><div class="card"><div class="num">01</div><h4>Design &amp; construction drawings</h4><div class="tag">Architectural · Structural · Civil</div><ul><li>Floor plans, elevations and sections</li><li>Foundation, framing and rebar details</li><li>Site, grading and utility plans</li><li>Door, window and finish schedules</li></ul><div class="why"><b>Why it helps:</b> One team, so your whole set stays in step.</div></div><div class="card"><div class="num">02</div><h4>MEP drawings &amp; coordination</h4><div class="tag">Mechanical · Electrical · Plumbing</div><ul><li>HVAC duct and piping layouts</li><li>Power, lighting and panel schedules</li><li>Plumbing layouts and riser diagrams</li><li>Checked against the architectural and structural models</li></ul><div class="why"><b>Why it helps:</b> Services fit before they reach site.</div></div><div class="card"><div class="num">03</div><h4>Shop drawings &amp; as-builts</h4><div class="tag">Model to sheet · Detail to install</div><ul><li>Structural, rebar and steel shop drawings</li><li>MEP shop and installation drawings</li><li>Old CAD files or PDFs turned into Revit</li><li>Redlines turned into clean as-built sets</li></ul><div class="why"><b>Why it helps:</b> Sheets the trades can build from.</div></div></div>
+
+    <div class="keep">
+      <div class="kicker">What stays<br>with you</div>
+      <ul><li><b>Your design</b><span>We draw what you designed. We don't change it.</span></li><li><b>Your standards</b><span>We work in your templates, title blocks and layers.</span></li><li><b>Your stamp</b><span>Your architect or engineer of record reviews and signs. We prepare the drawings.</span></li></ul>
+    </div>
+
+    <div class="kicker" style="margin-top:24px">Why Brixen</div>
+    <div class="why4">
+      <div><b>Engineer-prepared</b><span>Our own engineers draw and check the drawings.</span></div>
+      <div><b>Many trades, one team</b><span>Architectural, structural, civil and MEP under one roof, so your set stays in step.</span></div>
+      <div><b>Built for remote work</b><span>Set up to work with U.S. teams in the tools and file types you already use.</span></div>
+      <div><b>Use us your way</b><span>One drawing, a full set, or steady help. Scaled to your workload.</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Revit · AutoCAD · Engineer-checked sheets</span><b>Page 3</b></div>
+</section>
+
+<!-- ============ PAGE 4 : HOW IT WORKS + FIRST STEP ============ -->
+<section class="page">
+  <div class="head"><h1>HOW IT WORKS</h1><div class="sub">A simple path · No surprises</div><div class="rule"></div></div>
+  <div class="body">
+    <div class="steps">
+      <div class="step"><span class="n">01</span><b>Send it</b><span>Share plans, markups, sketches or models. Tell us what you need.</span></div>
+      <div class="step"><span class="n">02</span><b>Scope &amp; quote</b><span>We send back a drawing list, a price and a date. You say yes before we start.</span></div>
+      <div class="step"><span class="n">03</span><b>Draw &amp; check</b><span>We draw in your templates. Our engineers check each set before it leaves our desk.</span></div>
+      <div class="step"><span class="n">04</span><b>Deliver</b><span>Files in the formats you pick. We handle the revision rounds.</span></div>
+    </div>
+    <div class="kicker" style="margin-top:18px">What you get back</div>
+    <div class="files">
+      <div class="file"><b>RVT</b><span>Revit models</span></div>
+      <div class="file"><b>DWG</b><span>CAD files</span></div>
+      <div class="file"><b>PDF</b><span>Issue-ready sheets</span></div>
+      <div class="file"><b>XLS / PDF</b><span>Schedules</span></div>
+    </div>
+
+    <div class="first">
+      <div class="kicker">An easy first step</div>
+      <h3>Send us one small piece of a live job.</h3>
+      <p>One sheet, one detail set, or one old CAD file. We send back a clear scope, a price and a date before any work starts. If you like the result, we talk about the next one. If not, no hard feelings.</p>
+    </div>
+
+    <div class="kicker" style="margin-top:20px">Quick answers</div>
+    <div class="faq"><div><b>Will you use our templates?</b><span>Yes. We work from your standards, templates and title blocks.</span></div><div><b>Who checks the work?</b><span>Our own engineers review every set before it leaves our desk.</span></div><div><b>How do we talk?</b><span>Email, calls, and the file-sharing tools your team already uses.</span></div><div><b>Do we have to sign up for a big contract?</b><span>No. Single drawings, full sets, or ongoing help. You pick.</span></div></div>
+
+    <div class="contact">
+      <div class="pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i><div><small>Email</small><b>info@brixenconsultancy.com</b></div></div>
+      <div class="pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></i><div><small>Phone</small><b>+1 (229) 210-3506</b></div></div>
+      <div class="pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></i><div><small>Website</small><b>brixenconsultancy.com</b></div></div>
+      <div class="pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></i><div><small>Office</small><b>5900 Balcones Dr STE 100, Austin, TX 78731</b></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Plan · Draw · Coordinate · Deliver</span><b>Page 4</b></div>
+</section>
+
+<!-- ===== BRIXEN PROPOSAL EDITOR (hidden when printing) ===== -->
+<style id="bx-editor-css">
+  #bx-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: #131417; color: #fff; font-family: Poppins, "Segoe UI", Arial, sans-serif; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+  #bx-bar .row { max-width: 1100px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  #bx-bar .t { font-weight: 700; font-size: 14px; margin-right: auto; }
+  #bx-bar .t small { display: block; font-weight: 400; font-size: 11px; color: #b9bcc3; }
+  #bx-bar button { font: 600 13px Poppins, "Segoe UI", Arial, sans-serif; border: 0; border-radius: 8px; padding: 9px 14px; cursor: pointer; background: #2b2d33; color: #fff; }
+  #bx-bar button.main { background: #d8352c; }
+  #bx-bar button:hover { filter: brightness(1.15); }
+  #bx-fill { display: none; border-top: 1px solid #2b2d33; }
+  #bx-fill.open { display: block; }
+  #bx-fill .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 12px; }
+  #bx-fill label { font-size: 11px; color: #b9bcc3; display: block; }
+  #bx-fill input { width: 100%; font: 13px Poppins, "Segoe UI", Arial, sans-serif; padding: 7px 9px; border-radius: 6px; border: 1px solid #3a3c42; background: #1e2024; color: #fff; margin-top: 3px; }
+  #bx-fill .hint { grid-column: 1 / -1; font-size: 11px; color: #b9bcc3; }
+  #bx-msg { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: #131417; color: #fff; padding: 10px 18px; border-radius: 8px; font: 13px Poppins, "Segoe UI", Arial, sans-serif; z-index: 9999; display: none; }
+  body.bx-edit { padding-top: 70px; }
+  body.bx-edit [contenteditable="true"]:hover { outline: 1px dashed rgba(216,53,44,.6); outline-offset: 2px; }
+  body.bx-edit [contenteditable="true"]:focus { outline: 2px solid #d8352c; outline-offset: 2px; }
+  .page.bx-over { box-shadow: 0 0 0 4px #d8352c; }
+  .page .bx-overtag { position: absolute; top: 8px; right: 8px; z-index: 50; background: #d8352c; color: #fff; font: 600 11px Poppins, Arial, sans-serif; padding: 4px 10px; border-radius: 6px; }
+  @media print { #bx-bar, #bx-msg, .bx-overtag { display: none !important; } body.bx-edit { padding-top: 0; } .page.bx-over { box-shadow: none; } [contenteditable] { outline: none !important; } }
+</style>
+
+<div id="bx-bar">
+  <div class="row">
+    <div class="t">Brixen Proposal Editor<small>Click any text on the page and type. Enter adds a new bullet.</small></div>
+    <button id="bx-quick">Change name &amp; company</button>
+    <button id="bx-save">Save my changes</button>
+    <button id="bx-pdf" class="main">Save as PDF</button>
+  </div>
+  <div id="bx-fill">
+    <div class="row">
+      <div><label>Client name</label><input data-k="full_name" placeholder="e.g. John Smith"></div>
+      <div><label>Company name</label><input data-k="company" placeholder="e.g. ACME Builders Inc."></div>
+      <div><label>Date</label><input data-k="date"></div>
+      <div><label>&nbsp;</label><button id="bx-apply" class="main" style="width:100%">Update cover page</button></div>
+      <div class="hint">Only the cover page has the client's name and company. The other pages are the same for everyone, so you don't need to change them.</div>
+    </div>
+  </div>
+</div>
+<div id="bx-msg"></div>
+
+<script id="bx-editor-js">
+(function () {
+  document.body.classList.add('bx-edit');
+  const EDIT_SEL = '.page h1, .page h2, .page h3, .page h4, .page p, .page .lede, .page .for, .page .sub, .page .kicker, .page .tag, .page .meta > div, .page ul, .page .pain b, .page .pain span, .page .why, .page .step b, .page .step span, .page .file b, .page .file span, .page .faq b, .page .faq span, .page .pill b, .page .sign b, .page .sign span, .page .why4 b, .page .why4 span, .page .keep li b, .page .keep li span, .page .foot span';
+  document.querySelectorAll(EDIT_SEL).forEach((el) => {
+    if (el.closest('[contenteditable="true"]') && el.closest('[contenteditable="true"]') !== el) return;
+    el.setAttribute('contenteditable', 'true');
+    el.setAttribute('spellcheck', 'true');
+  });
+
+  // paste as plain text so the design stays clean
+  document.addEventListener('paste', (e) => {
+    if (!e.target.closest || !e.target.closest('[contenteditable="true"]')) return;
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertText', false, text);
+  });
+
+  const msg = (t) => { const m = document.getElementById('bx-msg'); m.textContent = t; m.style.display = 'block'; clearTimeout(m._t); m._t = setTimeout(() => (m.style.display = 'none'), 4000); };
+
+  // warn when a page has too much text
+  function checkOverflow() {
+    document.querySelectorAll('.page').forEach((pg, i) => {
+      const foot = pg.querySelector('.foot');
+      const limit = foot ? foot.offsetTop - 6 : pg.clientHeight;
+      let over = false;
+      pg.querySelectorAll('.body > *').forEach((el) => { if (el.offsetTop + el.offsetHeight > limit) over = true; });
+      pg.classList.toggle('bx-over', over);
+      let tag = pg.querySelector('.bx-overtag');
+      if (over && !tag) { tag = document.createElement('div'); tag.className = 'bx-overtag'; tag.textContent = 'Too much text on page ' + (i + 1) + ' - shorten it'; pg.appendChild(tag); }
+      if (!over && tag) tag.remove();
+    });
+  }
+  document.addEventListener('input', () => { clearTimeout(checkOverflow._t); checkOverflow._t = setTimeout(checkOverflow, 300); });
+  window.addEventListener('load', checkOverflow);
+  setTimeout(checkOverflow, 800);
+
+  // an empty date fills itself with today's date
+  document.querySelectorAll('[data-f="date"]').forEach((el) => {
+    if (el.textContent.trim() === '[Date]') el.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  });
+
+  // quick fill: name / company / date everywhere
+  const quick = document.getElementById('bx-fill');
+  document.getElementById('bx-quick').onclick = () => {
+    quick.classList.toggle('open');
+    quick.querySelectorAll('input').forEach((inp) => {
+      const el = document.querySelector('[data-f="' + inp.dataset.k + '"]');
+      inp.value = el ? el.textContent : '';
+    });
+  };
+  // swap an old word for a new one in every text on the pages (letter, cards, headline...)
+  function replaceAll(oldV, newV) {
+    if (!oldV || oldV.length < 3 || oldV === newV) return;
+    const rx = (s) => new RegExp('(?<![\\w])' + s.replace(/[.*+?^${}()|[\]\\]/g, '\\</body>') + '(?![\\w])', 'g');
+    const pairs = [[rx(oldV), newV], [rx(oldV.toUpperCase()), newV.toUpperCase()]];
+    document.querySelectorAll('.page').forEach((pg) => {
+      const walker = document.createTreeWalker(pg, NodeFilter.SHOW_TEXT);
+      let n;
+      while ((n = walker.nextNode())) {
+        if (n.parentElement.closest('[data-f]')) continue;
+        let t = n.nodeValue;
+        pairs.forEach(([a, b]) => { t = t.replace(a, () => b); });
+        if (t !== n.nodeValue) n.nodeValue = t;
+      }
+    });
+  }
+  document.getElementById('bx-apply').onclick = () => {
+    // longest first, so the full company name is swapped before the short one
+    const inputs = [...quick.querySelectorAll('input')].map((inp) => {
+      const el = document.querySelector('[data-f="' + inp.dataset.k + '"]');
+      return { inp, old: el ? el.textContent : '' };
+    }).sort((a, b) => b.old.length - a.old.length);
+    inputs.forEach(({ inp, old }) => { const v = inp.value.trim(); if (v) replaceAll(old, v); });
+    inputs.forEach(({ inp }) => {
+      const k = inp.dataset.k, v = inp.value.trim();
+      if (!v) return;
+      document.querySelectorAll('[data-f="' + k + '"]').forEach((el) => { el.textContent = el.dataset.upper ? v.toUpperCase() : v; });
+      if (k === 'company') document.title = 'Brixen Proposal - ' + v;
+    });
+    quick.classList.remove('open');
+    checkOverflow();
+    msg('Cover page updated.');
+  };
+
+  // save a copy of this file with the changes
+  function currentHtml() {
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.bx-overtag').forEach((n) => n.remove());
+    clone.querySelectorAll('.bx-over').forEach((n) => n.classList.remove('bx-over'));
+    clone.querySelector('body').classList.remove('bx-edit');
+    clone.querySelector('#bx-fill') && clone.querySelector('#bx-fill').classList.remove('open');
+    clone.querySelectorAll('[contenteditable]').forEach((n) => { n.removeAttribute('contenteditable'); n.removeAttribute('spellcheck'); });
+    return '<!DOCTYPE html>\n' + clone.outerHTML;
+  }
+  function suggestedName() {
+    const who = (document.querySelector('[data-f="full_name"]') || {}).textContent || 'Proposal';
+    const co = (document.querySelector('[data-f="company_short"]') || {}).textContent || '';
+    return ('Brixen-Proposal-' + co + '-' + who).replace(/[^A-Za-z0-9]+/g, '-').replace(/-+$/, '');
+  }
+  document.getElementById('bx-save').onclick = async () => {
+    const html = currentHtml();
+    const name = suggestedName() + '.html';
+    try {
+      if (window.showSaveFilePicker) {
+        const h = await window.showSaveFilePicker({ suggestedName: name, types: [{ description: 'Proposal (HTML)', accept: { 'text/html': ['.html'] } }] });
+        const w = await h.createWritable(); await w.write(html); await w.close();
+        msg('Saved. Open that file any time to keep editing.');
+        return;
+      }
+    } catch (e) { if (e && e.name === 'AbortError') return; }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
+    a.download = name; a.click();
+    msg('Saved to your Downloads folder as ' + name);
+  };
+
+  document.getElementById('bx-pdf').onclick = () => {
+    checkOverflow();
+    if (document.querySelector('.bx-over')) { if (!confirm('Some text runs off a page (red box). Save the PDF anyway?')) return; }
+    const old = document.title; document.title = suggestedName();
+    msg('Pick "Save as PDF". Margins: None. Turn ON "Background graphics".');
+    setTimeout(() => { window.print(); document.title = old; }, 300);
+  };
+})();
+</script>
+
+</body>
+</html>
